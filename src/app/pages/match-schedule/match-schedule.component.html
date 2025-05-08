@@ -1,0 +1,27 @@
+<h2>Upcoming Matches</h2>
+
+<select>
+  <option>All Leagues</option>
+  <option>Premier League</option>
+  <option>La Liga</option>
+  <option>Ligue 1</option>
+</select>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date & Time</th>
+      <th>Match</th>
+      <th>League</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let match of upcomingMatches">
+      <td>{{ match.time }}</td>
+      <td>{{ match.teams }}</td>
+      <td>{{ match.league }}</td>
+      <td>{{ match.location }}</td>
+    </tr>
+  </tbody>
+</table>

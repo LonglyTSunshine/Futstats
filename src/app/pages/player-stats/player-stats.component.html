@@ -1,2 +1,22 @@
 <h2>Player Stats</h2>
 <p>This page will display player statistics and allow filtering/comparison.</p>
+<h2>Player Stats</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Goals</th>
+      <th>Assists</th>
+      <th>Appearances</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td>{{ player.name }}</td>
+      <td>{{ player.goals }}</td>
+      <td>{{ player.assists }}</td>
+      <td>{{ player.appearances }}</td>
+    </tr>
+  </tbody>
+</table>

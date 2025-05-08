@@ -1,2 +1,24 @@
 <h2>League Standings</h2>
-<p>This page will show the latest standings of different soccer leagues.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Team</th>
+      <th>W</th>
+      <th>D</th>
+      <th>L</th>
+      <th>Pts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let team of standings">
+      <td>{{ team.rank }}</td>
+      <td>{{ team.team }}</td>
+      <td>{{ team.wins }}</td>
+      <td>{{ team.draws }}</td>
+      <td>{{ team.losses }}</td>
+      <td>{{ team.points }}</td>
+    </tr>
+  </tbody>
+</table>

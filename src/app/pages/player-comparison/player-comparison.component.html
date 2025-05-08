@@ -1,0 +1,45 @@
+<h2>Player Comparison</h2>
+
+<!-- Player 1 Dropdown -->
+<div>
+  <label>Select Player 1:</label><br>
+  <select #player1 (change)="selectPlayer(player1.value, 1)">
+    <option *ngFor="let p of players" [value]="p.name">{{ p.name }}</option>
+  </select>
+</div>
+
+<!-- Player 2 Dropdown -->
+<div>
+  <label>Select Player 2:</label><br>
+  <select #player2 (change)="selectPlayer(player2.value, 2)">
+    <option *ngFor="let p of players" [value]="p.name">{{ p.name }}</option>
+  </select>
+</div>
+
+
+<table style="margin-top: 1.5rem;">
+  <thead>
+    <tr>
+      <th>Stat</th>
+      <th>{{ selectedPlayer1.name }}</th>
+      <th>{{ selectedPlayer2.name }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Goals</td>
+      <td>{{ selectedPlayer1.goals }}</td>
+      <td>{{ selectedPlayer2.goals }}</td>
+    </tr>
+    <tr>
+      <td>Assists</td>
+      <td>{{ selectedPlayer1.assists }}</td>
+      <td>{{ selectedPlayer2.assists }}</td>
+    </tr>
+    <tr>
+      <td>Appearances</td>
+      <td>{{ selectedPlayer1.appearances }}</td>
+      <td>{{ selectedPlayer2.appearances }}</td>
+    </tr>
+  </tbody>
+</table>
