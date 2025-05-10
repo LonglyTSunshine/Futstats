@@ -1,0 +1,27 @@
+name: Sync Football Matches
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install functions deps
+        run: |
+          cd functions
+          npm ci
+
+      - name: Generate service-account.json from secret
+        run: |
+          echo "${{ secrets.FIREBASE_ADMIN_SDK }}" > functions/service-account.json
+
+      - name: Run sync script
+        run: |
+          cd functions
+          npm run sync
+        env:
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}

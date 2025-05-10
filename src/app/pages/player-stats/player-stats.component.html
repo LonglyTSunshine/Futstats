@@ -1,0 +1,20 @@
+<h2 class="mb-3">Player Stats</h2>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Goals</th>
+      <th>Assists</th>
+      <th>Appearances</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td>{{ player.name }}</td>
+      <td>{{ player.goals }}</td>
+      <td>{{ player.assists }}</td>
+      <td>{{ player.appearances }}</td>
+    </tr>
+  </tbody>
+</table>
