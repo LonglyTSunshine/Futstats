@@ -1,25 +1,24 @@
-<h2>Live Scores</h2>
+<h2 class="mb-3">Live Scores</h2>
 
-<select (change)="onLeagueChange($any($event.target).value)">
-
-  <option *ngFor="let league of leagues">{{ league }}</option>
+<select #sel class="form-select mb-3" (change)="onLeagueChange(sel.value)">
+  <option *ngFor="let league of leagues" [selected]="league===selectedLeague">
+    {{ league }}
+  </option>
 </select>
 
-<table>
-  <thead>
-    <tr>
-      <th>Time</th>
-      <th>Match</th>
-      <th>Score</th>
-      <th>Status</th>
-    </tr>
-  </thead>
+<table class="table table-bordered">
+  <thead><tr>
+    <th>Time</th>
+    <th>Match</th>
+    <th>Score</th>
+    <th>Status</th>
+  </tr></thead>
   <tbody>
-    <tr *ngFor="let match of displayMatches">
-      <td>{{ match.time }}</td>
-      <td>{{ match.teams }}</td>
-      <td>{{ match.score }}</td>
-      <td>{{ match.status }}</td>
+    <tr *ngFor="let m of matches">
+      <td>{{m.time}}</td>
+      <td>{{m.teams}}</td>
+      <td>{{m.score}}</td>
+      <td>{{m.status}}</td>
     </tr>
   </tbody>
 </table>

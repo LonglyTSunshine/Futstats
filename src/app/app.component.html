@@ -1,11 +1,16 @@
-<nav style="padding: 1rem; background: #f2f2f2; border-bottom: 1px solid #ccc;">
-  <a routerLink="/live-scores" style="margin-right: 20px;">Live Scores</a>
-  <a routerLink="/player-stats" style="margin-right: 20px;">Player Stats</a>
-  <a routerLink="/league-standings" style="margin-right: 20px;">League Standings</a>
-  <a routerLink="/match-schedule" style="margin-right: 20px;">Match Schedule</a>
-  <a routerLink="/player-comparison" style="margin-right: 20px;">Player Comparison</a>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4 px-3">
+  <a class="navbar-brand fw-bold" href="#">FutStats</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item"><a class="nav-link" routerLink="/live-scores" routerLinkActive="active">Live Scores</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/player-stats" routerLinkActive="active">Player Stats</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/league-standings" routerLinkActive="active">League Standings</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/match-schedule" routerLinkActive="active">Match Schedule</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/player-comparison" routerLinkActive="active">Player Comparison</a></li>
+    </ul>
+  </div>
 </nav>
+
 
 <main style="padding: 1rem;">
   <router-outlet></router-outlet>

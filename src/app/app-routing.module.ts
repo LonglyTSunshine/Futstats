@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'player-stats', component: PlayerStatsComponent },
   { path: 'league-standings', component: LeagueStandingsComponent },
   { path: 'match-schedule', component: MatchScheduleComponent },
-  { path: 'player-comparison', component: PlayerComparisonComponent },
+  { path: 'player-comparison', component: PlayerComparisonComponent }
 ];
 
 @NgModule({

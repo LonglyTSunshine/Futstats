@@ -16,6 +16,7 @@
             "outputPath": "dist/futstats",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            
             "polyfills": [
               "zone.js"
             ],
@@ -31,7 +32,10 @@
               "src/styles.css"
             ],
             "scripts": []
+            
+            
           },
+          "baseHref": "/Futstats/",
           "configurations": {
             "production": {
               "budgets": [
@@ -90,6 +94,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

@@ -5,7 +5,6 @@ import { LeagueStandingsComponent } from './pages/league-standings/league-standi
 import { MatchScheduleComponent } from './pages/match-schedule/match-schedule.component';
 import { PlayerComparisonComponent } from './pages/player-comparison/player-comparison.component';
 
-
 export const routes: Routes = [
   { path: '', redirectTo: 'live-scores', pathMatch: 'full' },
   { path: 'live-scores', component: LiveScoresComponent },
@@ -13,5 +12,4 @@ export const routes: Routes = [
   { path: 'league-standings', component: LeagueStandingsComponent },
   { path: 'match-schedule', component: MatchScheduleComponent },
   { path: 'player-comparison', component: PlayerComparisonComponent },
-
 ];

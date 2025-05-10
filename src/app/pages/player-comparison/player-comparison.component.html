@@ -1,23 +1,19 @@
-<h2>Player Comparison</h2>
+<h2 class="mb-3">Player Comparison</h2>
 
-<!-- Player 1 Dropdown -->
-<div>
-  <label>Select Player 1:</label><br>
-  <select #player1 (change)="selectPlayer(player1.value, 1)">
-    <option *ngFor="let p of players" [value]="p.name">{{ p.name }}</option>
-  </select>
+<div class="row mb-3">
+  <div class="col">
+    <select #player1 class="form-select" (change)="selectPlayer(player1.value, 1)">
+      <option *ngFor="let player of players">{{ player.name }}</option>
+    </select>
+  </div>
+  <div class="col">
+    <select #player2 class="form-select" (change)="selectPlayer(player2.value, 2)">
+      <option *ngFor="let player of players">{{ player.name }}</option>
+    </select>
+  </div>
 </div>
 
-<!-- Player 2 Dropdown -->
-<div>
-  <label>Select Player 2:</label><br>
-  <select #player2 (change)="selectPlayer(player2.value, 2)">
-    <option *ngFor="let p of players" [value]="p.name">{{ p.name }}</option>
-  </select>
-</div>
-
-
-<table style="margin-top: 1.5rem;">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Stat</th>

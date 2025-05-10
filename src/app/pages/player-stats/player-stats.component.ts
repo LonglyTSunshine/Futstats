@@ -10,8 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class PlayerStatsComponent {
   players = [
-       { name: 'Messi', goals: 10, assists: 5, appearances: 20 },
-       { name: 'Ronaldo', goals: 12, assists: 6, appearances: 22 },
-       { name: 'Mbappé', goals: 25, assists: 10, appearances: 30 },
+    { name: 'Lionel Messi', goals: 17, assists: 9, appearances: 26 },
+    { name: 'Cristiano Ronaldo', goals: 20, assists: 6, appearances: 27 },
+    { name: 'Kylian Mbappé', goals: 19, assists: 7, appearances: 28 },
+    { name: 'Erling Haaland', goals: 22, assists: 5, appearances: 28 }
   ];
 }

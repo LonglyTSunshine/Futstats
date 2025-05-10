@@ -1,33 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StatsService, Match } from '../../services/stats.service';
 
 @Component({
   selector: 'app-live-scores',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './live-scores.component.html',
-  styleUrls: ['./live-scores.component.css']
 })
-export class LiveScoresComponent {
-  selectedLeague = 'All Leagues';
+export class LiveScoresComponent implements OnInit {
+  originalMatches: Match[] = [];
+  matches:         Match[] = [];
 
-  leagues = ['All Leagues', 'Premier League', 'La Liga', 'Bundesliga'];
+  leagues = ['All Leagues','Premier League','La Liga','Bundesliga'];
+  selectedLeague = this.leagues[0];
 
-  liveMatches = [
-    { time: '10:00 AM', teams: 'Arsenal vs Chelsea', score: '2 - 1', status: 'Finished', league: 'Premier League' },
-    { time: '12:30 PM', teams: 'Man City vs Liverpool', score: '0 - 0', status: 'Live', league: 'Premier League' },
-    { time: '1:00 PM', teams: 'Barcelona vs Real Madrid', score: '-', status: 'Upcoming', league: 'La Liga' },
-    { time: '2:00 PM', teams: 'Dortmund vs Bayern', score: '-', status: 'Upcoming', league: 'Bundesliga' }
-  ];
+  constructor(private statsService: StatsService) {}
 
-  displayMatches = this.liveMatches;
+  ngOnInit(): void {
+    this.statsService.getMatches().subscribe(data => {
+      this.originalMatches = data;
+      this.filterMatches();
+    });
+  }
 
-  onLeagueChange(value: string) {
-    this.selectedLeague = value;
+  onLeagueChange(selected: string) {
+    this.selectedLeague = selected;
+    this.filterMatches();
+  }
+
+  private filterMatches() {
     if (this.selectedLeague === 'All Leagues') {
-      this.displayMatches = this.liveMatches;
+      this.matches = [...this.originalMatches];
     } else {
-      this.displayMatches = this.liveMatches.filter(match => match.league === this.selectedLeague);
+      this.matches = this.originalMatches.filter(
+        m => m.league === this.selectedLeague
+      );
     }
   }
 }
