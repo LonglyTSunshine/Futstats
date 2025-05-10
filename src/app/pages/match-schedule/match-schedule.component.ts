@@ -1,17 +1,28 @@
-import { Component } from '@angular/core';
+// src/app/pages/match-schedule/match-schedule.component.ts
+
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { FutstatsService, Schedule } from '../../services/stats.service';
 
 @Component({
   selector: 'app-match-schedule',
   standalone: true,
-  imports: [CommonModule], 
+  imports: [CommonModule],
   templateUrl: './match-schedule.component.html',
   styleUrls: ['./match-schedule.component.css']
 })
-export class MatchScheduleComponent {
-  upcomingMatches = [
-    { time: '2024-05-10 14:00', teams: 'Arsenal vs Man City', league: 'Premier League', location: 'Emirates Stadium' },
-    { time: '2024-05-11 16:30', teams: 'Barcelona vs Atletico', league: 'La Liga', location: 'Camp Nou' },
-    { time: '2024-05-12 18:00', teams: 'PSG vs Marseille', league: 'Ligue 1', location: 'Parc des Princes' }
-  ];
+export class MatchScheduleComponent implements OnInit {
+  // 用于存放从 Firestore 拉取的赛程数据
+  schedule: Schedule[] = [];
+
+  // 构造函数注入 service，实例名首字母小写
+  constructor(private futstatsService: FutstatsService) {}
+
+  ngOnInit(): void {
+    // 订阅 Observable，并把返回的数据赋给 schedule
+    this.futstatsService.getSchedules().subscribe(data => {
+      this.schedule = data;
+    });
+  }
 }

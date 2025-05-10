@@ -1,24 +1,22 @@
-<h2 class="mb-3">Live Scores</h2>
+<!-- src/app/pages/live-scores/live-scores.component.html -->
 
-<select #sel class="form-select mb-3" (change)="onLeagueChange(sel.value)">
-  <option *ngFor="let league of leagues" [selected]="league===selectedLeague">
-    {{ league }}
-  </option>
-</select>
-
-<table class="table table-bordered">
-  <thead><tr>
-    <th>Time</th>
-    <th>Match</th>
-    <th>Score</th>
-    <th>Status</th>
-  </tr></thead>
+<h2>Live Scores</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Teams</th>
+      <th>Score</th>
+      <th>Status</th>
+      <th>Time</th>
+    </tr>
+  </thead>
   <tbody>
-    <tr *ngFor="let m of matches">
-      <td>{{m.time}}</td>
-      <td>{{m.teams}}</td>
-      <td>{{m.score}}</td>
-      <td>{{m.status}}</td>
+    <!-- 原来是 let m of matches 改为 let s of scores -->
+    <tr *ngFor="let s of scores">
+      <td>{{ s.teams }}</td>
+      <td>{{ s.score }}</td>
+      <td>{{ s.status }}</td>
+      <td>{{ s.time }}</td>
     </tr>
   </tbody>
 </table>

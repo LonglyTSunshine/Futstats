@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+// src/app/pages/league-standings/league-standings.component.ts
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FutstatsService, Standing } from '../../services/stats.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-league-standings',
@@ -8,10 +11,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './league-standings.component.html',
   styleUrls: ['./league-standings.component.css']
 })
-export class LeagueStandingsComponent {
-  standings = [
-    { rank: 1, team: 'Arsenal', wins: 20, draws: 5, losses: 3, points: 65 },
-    { rank: 2, team: 'Man City', wins: 19, draws: 6, losses: 3, points: 63 },
-    { rank: 3, team: 'Liverpool', wins: 18, draws: 7, losses: 3, points: 61 }
-  ];
+export class LeagueStandingsComponent implements OnInit {
+  standings: Standing[] = [];
+
+  constructor(private fut: FutstatsService) {}
+
+  ngOnInit(): void {
+    this.fut.getStandings()
+      .pipe(
+        // 只取有 team 字段的文档
+        map(arr => arr.filter(s => !!s.team))
+      )
+      .subscribe(data => {
+        this.standings = data;
+      });
+  }
 }

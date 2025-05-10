@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FutstatsService, PlayerComparison } from '../../services/stats.service';
 
 @Component({
   selector: 'app-player-comparison',
@@ -8,25 +9,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './player-comparison.component.html',
   styleUrls: ['./player-comparison.component.css']
 })
-export class PlayerComparisonComponent {
-  players = [
-    { name: 'Lionel Messi', goals: 17, assists: 9, appearances: 26 },
-    { name: 'Cristiano Ronaldo', goals: 20, assists: 6, appearances: 27 },
-    { name: 'Kylian Mbappé', goals: 19, assists: 7, appearances: 28 },
-    { name: 'Erling Haaland', goals: 22, assists: 5, appearances: 28 }
-  ];
+export class PlayerComparisonComponent implements OnInit {
+  comparisons: PlayerComparison[] = [];
+  selected1?: PlayerComparison;
+  selected2?: PlayerComparison;
 
-  selectedPlayer1 = this.players[0];
-  selectedPlayer2 = this.players[1];
+  constructor(private fut: FutstatsService) {}
 
-  selectPlayer(playerName: string, selector: number) {
-    const player = this.players.find(p => p.name === playerName);
-    if (!player) return;
+  ngOnInit(): void {
+    this.fut.getPlayerComparisons().subscribe(data => {
+      this.comparisons = data;
+      if (data.length >= 2) {
+        this.selected1 = data[0];
+        this.selected2 = data[1];
+      }
+    });
+  }
 
-    if (selector === 1) {
-      this.selectedPlayer1 = player;
-    } else {
-      this.selectedPlayer2 = player;
-    }
+  selectPlayer(name: string, slot: 1 | 2) {
+    const p = this.comparisons.find(x => x.player === name);
+    if (!p) return;
+    slot === 1 ? this.selected1 = p : this.selected2 = p;
   }
 }

@@ -1,24 +1,22 @@
+<!-- src/app/pages/league-standings/league-standings.component.html -->
 <h2 class="mb-3">League Standings</h2>
-
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Rank</th>
-      <th>Team</th>
-      <th>Wins</th>
-      <th>Draws</th>
-      <th>Losses</th>
-      <th>Points</th>
+      <th>Played</th><th>Team</th><th>Won</th><th>Drawn</th><th>Lost</th><th>Points</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let team of standings">
-      <td>{{ team.rank }}</td>
-      <td>{{ team.team }}</td>
-      <td>{{ team.wins }}</td>
-      <td>{{ team.draws }}</td>
-      <td>{{ team.losses }}</td>
-      <td>{{ team.points }}</td>
+    <tr *ngFor="let s of standings" >
+      <!-- 只有 team 不为空才渲染这一行 -->
+      <ng-container *ngIf="s.team">
+        <td>{{ s.played }}</td>
+        <td>{{ s.team   }}</td>
+        <td>{{ s.won    }}</td>
+        <td>{{ s.drawn  }}</td>
+        <td>{{ s.lost   }}</td>
+        <td>{{ s.points }}</td>
+      </ng-container>
     </tr>
   </tbody>
 </table>

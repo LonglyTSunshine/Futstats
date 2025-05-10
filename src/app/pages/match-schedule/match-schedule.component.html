@@ -1,6 +1,5 @@
-<h2 class="mb-3">Match Schedule</h2>
-
-<table class="table table-bordered table-striped">
+<h2>Match Schedule</h2>
+<table class="table">
   <thead>
     <tr>
       <th>Date & Time</th>
@@ -10,11 +9,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let match of upcomingMatches">
-      <td>{{ match.time }}</td>
-      <td>{{ match.teams }}</td>
-      <td>{{ match.league }}</td>
-      <td>{{ match.location }}</td>
+    <tr *ngFor="let m of schedule">
+      <td>{{ m.dateTime | date:'yyyy-MM-dd HH:mm' }}</td>
+      <td>{{ m.teams }}</td>
+      <td>{{ m.league }}</td>
+      <td>{{ m.location }}</td>
     </tr>
   </tbody>
 </table>

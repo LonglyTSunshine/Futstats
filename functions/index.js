@@ -1,16 +1,13 @@
+// functions/index.js
 const functions = require('firebase-functions');
-const admin     = require('firebase-admin');
+// ← 这里改为解构 syncAll 而非 syncMatches
+const { syncAll } = require('./sync');
 
-// Initialize the Admin SDK
-admin.initializeApp();
-
-// Import and run your sync logic when the function triggers
 exports.syncMatches = functions
-  .runWith({ timeoutSeconds: 300 })        // give yourself a little more time
+  .runWith({ timeoutSeconds: 300 })
   .pubsub
   .schedule('every 1 hours')
   .onRun(async () => {
-    const { syncMatches } = require('./sync');
-    await syncMatches();
+    await syncAll();
     return null;
   });
